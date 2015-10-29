@@ -21,6 +21,7 @@ public class DvdManager {
 
 
 	public void find(){
+		System.out.println("状态(state 0借出 1未借出)");
 		dvddao.findAll();
 	}
 	
@@ -87,7 +88,7 @@ public class DvdManager {
 	public void dvdTop(){
 		System.out.println("------热门Dvd排行榜------");
 		System.out.println(
-    			"序号 " + "\t" + "状态(0借出1未借出)" + "\t" + "名称" + "\t\t" + "借出日期"+ "\t\t" + "归还日期"+"\t\t"+"借出次数");
+    			"序号 " + "\t" + "状态(state 0借出 1未借出)" + "\t" + "名称" + "\t\t" + "借出日期"+ "\t\t" + "归还日期"+"\t\t"+"借出次数");
 		List<Dvd> list=dvddao.findAll();
     	Collections.sort(list);  	
      }		
