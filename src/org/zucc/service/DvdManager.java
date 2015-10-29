@@ -25,7 +25,11 @@ public class DvdManager {
 	}
 	
 	public void add(){
-		dvddao.addDvd(null);
+		System.out.print("请输入新增Dvd的名字:");
+		String  name = input.next();
+		Dvd dvd =new Dvd(name);
+		dvddao.addDvd(dvd);
+		System.out.println("新增《"+name+"》成功！");
 	}
 	
 	public void borrowDvd() throws ParseException{
