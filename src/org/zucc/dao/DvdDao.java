@@ -151,7 +151,7 @@ public class DvdDao {
 		try {
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/dvd", "root", "root");	
-			String sql = "select * from dvd";
+			String sql = "select * from dvd ";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while(rs.next()){
@@ -163,8 +163,7 @@ public class DvdDao {
 				dvd.setState(rs.getInt("state"));
 				dvd.setBorrowCount(rs.getInt("borrowcount"));	
 				list.add(dvd);
-				
-					  System.out.println(dvd);
+			    System.out.println(dvd);
 			}	
 		} catch (SQLException e) {
 			System.out.println("≤È—Ø ß∞‹");
@@ -176,6 +175,34 @@ public class DvdDao {
 		return list;
 	}
 	
+	public List<Dvd> findtop() {
+		List<Dvd> list=new ArrayList<Dvd>();
+		try {
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/dvd", "root", "root");	
+			String sql = "select * from dvd order by borrowcount desc";
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()){
+				Dvd dvd = new Dvd();
+				dvd.setId(rs.getInt("id"));
+				dvd.setName(rs.getString("name"));
+				dvd.setBorrowDate(rs.getDate("borrowdate"));
+				dvd.setReturnDate(rs.getDate("returndate"));
+				dvd.setState(rs.getInt("state"));
+				dvd.setBorrowCount(rs.getInt("borrowcount"));	
+				list.add(dvd);
+			    System.out.println(dvd);
+			}	
+		} catch (SQLException e) {
+			System.out.println("≤È—Ø ß∞‹");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			myClose();			
+		}
+		return list;
+	}
 	public void deleteDvd(int id) {
 		try {
 			conn = DriverManager.getConnection(
